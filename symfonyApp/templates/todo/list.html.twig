@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('css/list.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+    var togglePath = "{{ path('deleteTodoItem', {'itemId': '0' }) }}";
+</script>
+{% endblock %}
+
+{% block body %}
+
+    <h1>To-do list</h1>
+
+    <div>
+        {{ form_start(addNewItemForm) }}
+        {{ form_widget(addNewItemForm) }}
+        {{ form_end(addNewItemForm) }}
+    </div>
+
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Due date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in listData %}
+                <tr class="{% if item.isDone %}isDone{% endif %}">
+                    <td>{{ item.description }}</td>
+                    <td>{{ item.dueDate | date('d/m/Y') }}</td>
+                    <td>
+                        <a href="{{ path('viewTodoItem',{'itemId': item.id }) }}">View</a>
+                        <button data-id="{{ item.id }}" class="deleteButton">Delete</button>
+                        <button data-id="{{ item.id }}" class="checkButton">{% if item.isDone %}Uncheck{% else %}Check{% endif %}</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div>
+        <a href="{{ path('logout') }}">Logout</a>
+    </div>
+
+{% endblock %}

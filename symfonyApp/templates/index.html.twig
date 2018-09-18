@@ -1,0 +1,16 @@
+{%  extends 'base.html.twig' %}
+
+{% block body %}
+
+    Here user will log in to the system. <a href="{{ path('ToDoList') }}">List</a>
+
+    <div>
+        <form action="{{ path('login') }}" method="POST">
+            Username: <input type="text" id="username" name="_username"/><br>
+            Password: <input type="text" id="password" name="_password"/>
+
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+{% endblock %}

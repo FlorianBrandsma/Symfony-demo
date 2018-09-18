@@ -1,0 +1,10 @@
+
+body
+{
+    background-color: greenyellow;
+}
+
+.isDone
+{
+    text-decoration: line-through;
+}
